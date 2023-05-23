@@ -1,0 +1,13 @@
+mat-card-title {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #3f51b5;
+    margin-bottom: 24px;
+}
+
+form {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}

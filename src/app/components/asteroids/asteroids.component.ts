@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { AsteroidsService } from 'src/app/services/apis/asteroids.service';
 import { IAsteroid } from 'src/app/types/types';
 

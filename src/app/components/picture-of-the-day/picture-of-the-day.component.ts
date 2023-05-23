@@ -9,11 +9,13 @@ import { IPictureOfTheDay } from 'src/app/types/types';
 })
 export class PictureOfTheDayComponent {
   imageUrl: string = '';
+  description: string = '';
   constructor(private pictureOfTheDayService: NasaPictureOfTheDayService) {
     this.pictureOfTheDayService
       .getPictureOfTheDay()
       .then((pictureOfTheDay: IPictureOfTheDay | null) => {
         this.imageUrl = pictureOfTheDay?.url ?? '';
+        this.description = pictureOfTheDay?.explanation ?? '';
       })
       .catch((err) => (this.imageUrl = ''));
   }
