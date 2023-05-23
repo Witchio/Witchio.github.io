@@ -10,6 +10,7 @@ import { IAsteroid } from 'src/app/types/types';
 export class AsteroidsComponent {
   asteroids: IAsteroid[] = [];
   isLoading: boolean = false;
+  isValidationError: boolean = false;
   displayedColumns: string[] = [
     'id',
     'name',
@@ -28,6 +29,11 @@ export class AsteroidsComponent {
 
   filterResults = (startDate: any, endDate: any) => {
     event?.preventDefault();
+    if (startDate >= endDate || !startDate || !endDate) {
+      this.isValidationError = true;
+      return;
+    }
+    this.isValidationError = false;
     this.isLoading = true;
     this.asteroidsService
       .getCloseAsteroidsByDate(startDate, endDate)

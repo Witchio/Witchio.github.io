@@ -10,6 +10,8 @@
             <button type="submit" (click)="filterResults(startDate.value, endDate.value)">Submit</button>
         </form>
 
+        <div *ngIf="isValidationError" class="error">Please select a start date earlier to end date</div>
+
         <mat-progress-spinner *ngIf="isLoading" [mode]="'indeterminate'"></mat-progress-spinner>
 
         <table mat-table [dataSource]="asteroids" *ngIf="!isLoading">
