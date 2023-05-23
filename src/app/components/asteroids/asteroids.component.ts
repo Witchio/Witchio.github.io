@@ -10,6 +10,7 @@ import { IAsteroid } from 'src/app/types/types';
 })
 export class AsteroidsComponent {
   asteroids: IAsteroid[] = [];
+  isLoading: boolean = false;
   displayedColumns: string[] = [
     'id',
     'name',
@@ -28,12 +29,16 @@ export class AsteroidsComponent {
 
   filterResults = (startDate: any, endDate: any) => {
     event?.preventDefault();
+    this.isLoading = true;
     this.asteroidsService
       .getCloseAsteroidsByDate(startDate, endDate)
       .then((data: IAsteroid[]) => {
         this.asteroids = data;
-        console.log('data', data);
+        this.isLoading = false;
       })
-      .catch((err) => console.log('ERROR', err));
+      .catch((err) => {
+        console.log('ERROR', err);
+        this.isLoading = false;
+      });
   };
 }

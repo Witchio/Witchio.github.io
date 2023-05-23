@@ -15,8 +15,6 @@ export class AsteroidsService {
     if (result.status === 200) {
       const data = await result.json();
 
-      console.log(data.near_earth_objects);
-
       const filteredData: IAsteroid[] = data.near_earth_objects.map(
         (asteroid: any) => {
           return {
@@ -55,9 +53,7 @@ export class AsteroidsService {
 
       const asteroids: IAsteroid[] = [];
       for (const date in asteroidsData) {
-        console.log('date', date);
         asteroidsData[date].forEach((asteroid: any) => {
-          console.log('asteroid', asteroid);
           const filteredAsteroid: IAsteroid = {
             id: asteroid.id,
             name: asteroid.name,
@@ -72,8 +68,6 @@ export class AsteroidsService {
           asteroids.push(filteredAsteroid);
         });
       }
-
-      console.log('asteroids', asteroids);
 
       return asteroids;
     }

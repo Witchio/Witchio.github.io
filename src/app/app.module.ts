@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { AsteroidsComponent } from './components/asteroids/asteroids.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [AppComponent, PictureOfTheDayComponent, AsteroidsComponent],
@@ -27,6 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
   ],
   providers: [],

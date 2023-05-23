@@ -1,11 +1,9 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { NasaPictureOfTheDayService } from 'src/app/services/apis/picture-of-the-day.service';
 import { IPictureOfTheDay } from 'src/app/types/types';
 
 @Component({
   selector: 'app-picture-of-the-day',
-  // imports: [CommonModule],
   templateUrl: './picture-of-the-day.component.html',
   styleUrls: ['./picture-of-the-day.component.css'],
 })
