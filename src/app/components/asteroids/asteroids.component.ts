@@ -10,7 +10,9 @@ import { IAsteroid } from 'src/app/types/types';
 export class AsteroidsComponent {
   asteroids: IAsteroid[] = [];
   isLoading: boolean = false;
-  isValidationError: boolean = false;
+  isDateRangeError: boolean = false;
+  isEndDateBeforeStartDate: boolean = false;
+  isMissingDateError: boolean = false;
   displayedColumns: string[] = [
     'id',
     'name',
@@ -29,12 +31,34 @@ export class AsteroidsComponent {
 
   filterResults = (startDate: any, endDate: any) => {
     event?.preventDefault();
-    if (startDate >= endDate || !startDate || !endDate) {
-      this.isValidationError = true;
+    this.isDateRangeError = false;
+    this.isEndDateBeforeStartDate = false;
+    this.isMissingDateError = false;
+
+    const startDateObj: Date = new Date(startDate);
+    const endDateObj: Date = new Date(endDate);
+
+    if (!startDate || !endDate) {
+      this.isMissingDateError = true;
       return;
     }
-    this.isValidationError = false;
+    if (startDateObj >= endDateObj) {
+      this.isEndDateBeforeStartDate = true;
+      return;
+    }
+
+    const differenceInMilliseconds = Math.abs(
+      endDateObj.getTime() - startDateObj.getTime()
+    );
+    const differenceInDays = differenceInMilliseconds / (24 * 60 * 60 * 1000);
+
+    if (differenceInDays > 7) {
+      this.isDateRangeError = true;
+      return;
+    }
+
     this.isLoading = true;
+
     this.asteroidsService
       .getCloseAsteroidsByDate(startDate, endDate)
       .then((data: IAsteroid[]) => {

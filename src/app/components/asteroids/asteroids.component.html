@@ -4,13 +4,16 @@
     </mat-card-header>
     <mat-card-content>
         <form>
-            <span>Filter by date</span>
+            <span>Filter by date (max 7 days difference)</span>
             <input type="date" name="startDate" id="startDate" #startDate />
             <input type="date" name="endDate" id="endDate" #endDate />
             <button type="submit" (click)="filterResults(startDate.value, endDate.value)">Submit</button>
         </form>
 
-        <div *ngIf="isValidationError" class="error">Please select a start date earlier to end date</div>
+        <div *ngIf="isEndDateBeforeStartDate" class="error">Please select a start date earlier to end date</div>
+        <div *ngIf="isDateRangeError" class="error">The difference between start and end date must not exceed 7 days.
+        </div>
+        <div *ngIf="isMissingDateError" class="error">Please select a start date and end date</div>
 
         <mat-progress-spinner *ngIf="isLoading" [mode]="'indeterminate'"></mat-progress-spinner>
 
